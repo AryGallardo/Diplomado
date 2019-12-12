@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;//Fachada para utilizar Query Builder
-use App\Comuna;
 use App\Municipio;
-
-
-class ComunaController extends Controller
+use App\Departamento;
+class MunicipioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +16,13 @@ class ComunaController extends Controller
      */
     public function index()
     {
-        $comunas = DB::table('tb_comuna as c')
-                    ->join('tb_municipio','c.muni_codi','=','tb_municipio.muni_codi')
-                    ->select('c.comu_codi','c.comu_nomb','c.muni_codi','tb_municipio.muni_nomb')
+        $municipios = DB::table('tb_municipio as c')
+                    ->join('tb_departamento','c.depa_codi','=','tb_departamento.depa_codi')
+                    ->select('c.muni_codi','c.muni_nomb','c.muni_codi','tb_departamento.depa_nomb')
                     ->get();
-        return view('comuna.index', compact('comunas'));
+        return view('municipio.index', compact('municipios'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +33,7 @@ class ComunaController extends Controller
     {
         //
         $municipios = Municipio::orderBy('muni_nomb')->get();
-        return view('comuna.create',compact('municipios'));
+        return view('municipio.create',compact('municipios'));
     }
 
     /**
@@ -46,12 +45,12 @@ class ComunaController extends Controller
     public function store(Request $request)
     {
         //
-        $comuna = new Comuna;
+        $municipio = new Municipio;
         //$flight->name = $request->name
-        $comuna->comu_nomb = $request->comu_nomb;
-        $comuna->muni_codi = $request->muni_codi;
-        $comuna->save();
-        return redirect()->route('comuna.index')->with('status','guardado');
+        $municipio->muni_nomb = $request->muni_nomb;
+        $municipio->muni_codi = $request->muni_codi;
+        $municipio->save();
+        return redirect()->route('municipio.index')->with('status','guardado');
         
         
     }
@@ -75,9 +74,9 @@ class ComunaController extends Controller
      */
     public function edit($id)
     {
-        $comuna = Comuna::findOrFail($id);
+        $municipio = Municipio::findOrFail($id);
         $municipios = Municipio::all();
-        return view('comuna.edit', compact('comuna','municipios'));
+        return view('municipio.edit', compact('municipio','municipios'));
     }
 
     /**
@@ -89,10 +88,10 @@ class ComunaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comuna = Comuna::findOrFail($id);
-        $comuna->fill($request->all());
-        $comuna->save();
-        return redirect()->route('comuna.index')->with('status','actualizado');
+        $municipio = Municipio::findOrFail($id);
+        $municipio->fill($request->all());
+        $municipio->save();
+        return redirect()->route('municipio.index')->with('status','actualizado');
     }
 
     /**
@@ -103,8 +102,9 @@ class ComunaController extends Controller
      */
     public function destroy($id)
     {
-        $comuna = Comuna::findOrFail($id);
-        $comuna->delete();
-        return redirect()->route('comuna.index')->with('status','eliminado');
+        $municipio = Municipio::findOrFail($id);
+        $municipio->delete();
+        return redirect()->route('municipio.index')->with('status','eliminado');
     }
 }
+

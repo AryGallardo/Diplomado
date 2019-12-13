@@ -2,7 +2,7 @@
 
 @section('title', 'Creación de Municipio')
 
-@section('title2', 'Nueva Municipio')
+@section('title2', 'Nuevo Municipio')
 
 @section('content')
 
@@ -18,11 +18,11 @@
 						<small id="municipiolHelp" class="form-text text-muted">Nombre del municipio.</small>
 					</div>
 					<div class="form-group">
-						<label for="municipio">Municipio</label>
-						<select name='muni_codi' class = 'form-control'>
+						<label for="departamento">Departamento</label>
+						<select name='depa_codi' class = 'form-control'>
 							<option value="">Seleccione uno ... </option>
-							@foreach($municipios as $municipio)
-								<option value = '{{ $municipio->muni_codi }}'> {{ $municipio->muni_nomb }} </option>
+							@foreach($departamentos as $departamento)
+								<option value = '{{ $departamento->depa_codi }}'> {{ $departamento->depa_nomb }} </option>
 							@endforeach
 						</select>
 					</div>

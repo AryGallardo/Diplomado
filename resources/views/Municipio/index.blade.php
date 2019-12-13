@@ -19,7 +19,7 @@
                     <a href="/municipio/create" class="btn btn-primary btn-sm" id="nuevo"  
                         data-toggle="tooltip" title="Nueva Municipio">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        Nueva
+                        Nuevo
                     </a> 
                 </th>
             </tr>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{$municipio->muni_codi}}</td>
                     <td>{{$municipio->muni_nomb}}</td>
-                    <td>{{$municipio->muni_nomb}}</td>
+                    <td>{{$municipio->depa_nomb}}</td>
                     <td class="text-center">
                         <form method="POST" action="/municipio/{{$municipio->muni_codi}}" accept-charset="UTF-8" 
                             style="display:inline">

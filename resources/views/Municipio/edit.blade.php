@@ -17,14 +17,14 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="muni_codi">Municipio </label>
-							<select name='muni_codi' class = 'form-control'>
+							<label for="depa_codi">Departamento </label>
+							<select name='depa_codi' class = 'form-control'>
 								<option value="">Seleccione uno ... </option>
-								@foreach($municipios as $municipio)
-									@if($municipio->muni_codi == $municipio->muni_codi)
-										<option selected value = '{{ $municipio->muni_codi }}'> {{ $municipio->muni_nomb }} </option>
+								@foreach($departamentos as $departamento)
+									@if($municipio->depa_codi == $departamento->depa_codi)
+										<option selected value = '{{ $departamento->depa_codi }}'> {{ $departamento->depa_nomb }} </option>
 									@else
-										<option value = '{{ $municipio->muni_codi }}'> {{ $municipio->muni_nomb }} </option>
+										<option value = '{{ $departamento->depa_codi }}'> {{ $departamento->depa_nomb }} </option>
 									@endif
 								@endforeach
 							</select>
